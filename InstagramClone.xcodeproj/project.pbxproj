@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -28,6 +28,10 @@
 		407A1FD226D3F5940058F84D /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407A1FD126D3F5940058F84D /* SearchResultViewController.swift */; };
 		407A1FD426D3F64A0058F84D /* PostEditeorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407A1FD326D3F64A0058F84D /* PostEditeorViewController.swift */; };
 		407A1FD626D3F6760058F84D /* PublishPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407A1FD526D3F6760058F84D /* PublishPostViewController.swift */; };
+		407A1FDA26D40F930058F84D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 407A1FD926D40F930058F84D /* GoogleService-Info.plist */; };
+		407A1FDD26D4140D0058F84D /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407A1FDC26D4140D0058F84D /* DatabaseManager.swift */; };
+		407A1FDF26D416290058F84D /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407A1FDE26D416290058F84D /* AuthManager.swift */; };
+		407A1FE126D416B30058F84D /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407A1FE026D416B30058F84D /* StorageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +58,10 @@
 		407A1FD126D3F5940058F84D /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 		407A1FD326D3F64A0058F84D /* PostEditeorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEditeorViewController.swift; sourceTree = "<group>"; };
 		407A1FD526D3F6760058F84D /* PublishPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishPostViewController.swift; sourceTree = "<group>"; };
+		407A1FD926D40F930058F84D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		407A1FDC26D4140D0058F84D /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		407A1FDE26D416290058F84D /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		407A1FE026D416B30058F84D /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		611D66800F03E20B6D0872A8 /* Pods-InstagramClone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramClone.release.xcconfig"; path = "Target Support Files/Pods-InstagramClone/Pods-InstagramClone.release.xcconfig"; sourceTree = "<group>"; };
 		6895FF0C0C209606E9477F29 /* Pods-InstagramClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramClone.debug.xcconfig"; path = "Target Support Files/Pods-InstagramClone/Pods-InstagramClone.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,7 +84,6 @@
 				6895FF0C0C209606E9477F29 /* Pods-InstagramClone.debug.xcconfig */,
 				611D66800F03E20B6D0872A8 /* Pods-InstagramClone.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -115,8 +122,12 @@
 		407A1FB326D3F2B60058F84D /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				407A1FD926D40F930058F84D /* GoogleService-Info.plist */,
 				407A1F9F26D3E47B0058F84D /* AppDelegate.swift */,
 				407A1FA126D3E47B0058F84D /* SceneDelegate.swift */,
+				407A1FDC26D4140D0058F84D /* DatabaseManager.swift */,
+				407A1FDE26D416290058F84D /* AuthManager.swift */,
+				407A1FE026D416B30058F84D /* StorageManager.swift */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -138,6 +149,7 @@
 		407A1FB626D3F2D50058F84D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				407A1FDB26D4136E0058F84D /* General */,
 				407A1FC126D3F4350058F84D /* Other */,
 				407A1FC026D3F4050058F84D /* CoreTabs */,
 			);
@@ -169,14 +181,6 @@
 			isa = PBXGroup;
 			children = (
 				407A1FC226D3F44D0058F84D /* Onboarding */,
-				407A1FC726D3F4E70058F84D /* PostViewController.swift */,
-				407A1FC926D3F5080058F84D /* EditProfileViewController.swift */,
-				407A1FCB26D3F5220058F84D /* SettingsViewController.swift */,
-				407A1FCD26D3F5360058F84D /* LIstViewController.swift */,
-				407A1FCF26D3F5510058F84D /* SearchViewController.swift */,
-				407A1FD126D3F5940058F84D /* SearchResultViewController.swift */,
-				407A1FD326D3F64A0058F84D /* PostEditeorViewController.swift */,
-				407A1FD526D3F6760058F84D /* PublishPostViewController.swift */,
 			);
 			name = Other;
 			path = "New Group";
@@ -189,6 +193,21 @@
 				407A1FC526D3F4A40058F84D /* RegistrationViewController.swift */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		407A1FDB26D4136E0058F84D /* General */ = {
+			isa = PBXGroup;
+			children = (
+				407A1FC726D3F4E70058F84D /* PostViewController.swift */,
+				407A1FC926D3F5080058F84D /* EditProfileViewController.swift */,
+				407A1FCB26D3F5220058F84D /* SettingsViewController.swift */,
+				407A1FCD26D3F5360058F84D /* LIstViewController.swift */,
+				407A1FCF26D3F5510058F84D /* SearchViewController.swift */,
+				407A1FD126D3F5940058F84D /* SearchResultViewController.swift */,
+				407A1FD326D3F64A0058F84D /* PostEditeorViewController.swift */,
+				407A1FD526D3F6760058F84D /* PublishPostViewController.swift */,
+			);
+			path = General;
 			sourceTree = "<group>";
 		};
 		CD043A640B79D5AEA7038EB8 /* Frameworks */ = {
@@ -259,6 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				407A1FAC26D3E47D0058F84D /* LaunchScreen.storyboard in Resources */,
+				407A1FDA26D40F930058F84D /* GoogleService-Info.plist in Resources */,
 				407A1FA926D3E47D0058F84D /* Assets.xcassets in Resources */,
 				407A1FA726D3E47B0058F84D /* Main.storyboard in Resources */,
 			);
@@ -320,12 +340,15 @@
 				407A1FA426D3E47B0058F84D /* HomeViewController.swift in Sources */,
 				407A1FC626D3F4A40058F84D /* RegistrationViewController.swift in Sources */,
 				407A1FC826D3F4E70058F84D /* PostViewController.swift in Sources */,
+				407A1FE126D416B30058F84D /* StorageManager.swift in Sources */,
 				407A1FBD26D3F3ED0058F84D /* NotificationsViewController.swift in Sources */,
+				407A1FDD26D4140D0058F84D /* DatabaseManager.swift in Sources */,
 				407A1FD226D3F5940058F84D /* SearchResultViewController.swift in Sources */,
 				407A1FC426D3F47E0058F84D /* LoginViewController.swift in Sources */,
 				407A1FD026D3F5510058F84D /* SearchViewController.swift in Sources */,
 				407A1FCE26D3F5360058F84D /* LIstViewController.swift in Sources */,
 				407A1FD426D3F64A0058F84D /* PostEditeorViewController.swift in Sources */,
+				407A1FDF26D416290058F84D /* AuthManager.swift in Sources */,
 				407A1FBF26D3F3FC0058F84D /* ProfileViewController.swift in Sources */,
 				407A1FA026D3E47B0058F84D /* AppDelegate.swift in Sources */,
 				407A1FA226D3E47B0058F84D /* SceneDelegate.swift in Sources */,
