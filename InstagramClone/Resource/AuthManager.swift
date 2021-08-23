@@ -6,7 +6,7 @@
 //
 
 //인증 항목을 관리할 파일을 만듭니다!
-import FirebaseDatabase
+import FirebaseAuth
 
 public class AuthManager {
     static let shared = AuthManager()
