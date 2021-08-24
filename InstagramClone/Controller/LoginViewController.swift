@@ -5,10 +5,12 @@
 //  Created by 신지훈 on 2021/08/24.
 //
 
+import SafariServices
 import UIKit
 
 class LoginViewController: UIViewController {
 
+    //MARK: - 요소
     
     //이메일/ 패스워드 텍스트 필드 생성
     private let usernameEmailField: UITextField = {
@@ -26,6 +28,9 @@ class LoginViewController: UIViewController {
         //텍스트 뷰의 테두리가 기준으로 잘리게 설정하고 /약간의 모서리 반경을 주겠습니다.
         field.layer.masksToBounds = true
         field.layer.cornerRadius = Constants.cornerRadius
+        //테두리 추가
+        field.layer.borderWidth = 1.0
+        field.layer.borderColor = UIColor.secondaryLabel.cgColor
         return field
     }()
     
@@ -34,7 +39,7 @@ class LoginViewController: UIViewController {
         field.isSecureTextEntry = true // 이 속성을 추가 해주면 글을 적을때 ***이렇게 뜬답니다!
         field.placeholder = "비밀번호"
         field.backgroundColor = .secondarySystemBackground
-        field.returnKeyType = .next
+        field.returnKeyType = .continue
         field.leftViewMode = .always
         field.leftView = UIView(frame: CGRect(x: 0, y: 0,
                                               width: 10, height: 0))
@@ -42,6 +47,8 @@ class LoginViewController: UIViewController {
         field.autocorrectionType = .no
         field.layer.masksToBounds = true
         field.layer.cornerRadius = Constants.cornerRadius
+        field.layer.borderWidth = 1.0
+        field.layer.borderColor = UIColor.secondaryLabel.cgColor
         return field
     }()
     
@@ -49,6 +56,7 @@ class LoginViewController: UIViewController {
     private let loginButton: UIButton = {
         let button = UIButton()
         button.setTitle("로그인", for: .normal)
+        button.titleLabel?.font = .boldSystemFont(ofSize: 18)
         button.backgroundColor = .systemBlue
         button.setTitleColor(.white, for: .normal)
         button.layer.masksToBounds = true
@@ -58,21 +66,26 @@ class LoginViewController: UIViewController {
     
     private let termsButton: UIButton = {
         let button = UIButton()
-        
+        button.setTitle("서비스약관", for: .normal)
+        button.titleLabel?.font = .boldSystemFont(ofSize: 12)
+        button.setTitleColor(.secondaryLabel, for: .normal)
         return button
     }()
     
     
     private let privacyButton: UIButton = {
         let button = UIButton()
-       
+        button.setTitle("개인정보처리방침", for: .normal)
+        button.titleLabel?.font = .boldSystemFont(ofSize: 12)
+        button.setTitleColor(.secondaryLabel, for: .normal)
         return button
     }()
     
     private let createAccountButton: UIButton = {
         let button = UIButton()
         button.setTitleColor(.label, for: .normal)
-        button.setTitle("계정이 없으신가요? 저희의 새로운 회원이 되어주세요!", for: .normal)
+        button.titleLabel?.font = .boldSystemFont(ofSize: 15)
+        button.setTitle("계정이 없으신가요?가입하기", for: .normal)
         return button
     }()
     
@@ -88,14 +101,23 @@ class LoginViewController: UIViewController {
     }()
     
     
-    
+    //MARK: - 화면
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubViews()
-
         view.backgroundColor = .systemBackground
+        //사용자가 엔터키를 누르면 자동으로 넘어가게 하기위해 델리게이트 필드에 델리게이트 연결
+        usernameEmailField.delegate = self
+        passwordField.delegate = self
+        
+        //버튼 타겟 설정.
+        loginButton.addTarget(self, action: #selector(didTabLoginButton), for: .touchUpInside)
+        termsButton.addTarget(self, action: #selector(didTabTermsButton), for: .touchUpInside)
+        privacyButton.addTarget(self, action: #selector(didTabPrivacyButton), for: .touchUpInside)
+        createAccountButton.addTarget(self, action: #selector(didTabCreateAccountButton), for: .touchUpInside)
+        
     }
     
     //프레임을 설정합니다.
@@ -107,8 +129,46 @@ class LoginViewController: UIViewController {
             width: view.width,
             height: view.height/3.0
         )
+        usernameEmailField.frame = CGRect(
+            x: 25,
+            y: headerView.bottom + 40,
+            width: view.width - 50,
+            height: 52
+        )
+        passwordField.frame = CGRect(
+            x: 25,
+            y: usernameEmailField.bottom + 10,
+            width: view.width - 50,
+            height: 52
+        )
+        loginButton.frame = CGRect(
+            x: 25,
+            y: passwordField.bottom + 10,
+            width: view.width - 50,
+            height: 52
+        )
+        createAccountButton.frame = CGRect(
+            x: 25,
+            y: loginButton.bottom + 5,
+            width: view.width - 50,
+            height: 52
+        )
+        termsButton.frame = CGRect(
+            x: 10,
+            y: view.height - view.safeAreaInsets.bottom - 100,
+            width: view.width-20,
+            height: 50
+        )
+        privacyButton.frame = CGRect(
+            x: 10,
+            y: view.height - view.safeAreaInsets.bottom - 50,
+            width: view.width-20,
+            height: 50
+        )
         configureHeaderView()
     }
+    
+    //MARK: - 함수
     
     
     //뷰를 추가하는 함수 생성
@@ -121,6 +181,7 @@ class LoginViewController: UIViewController {
         view.addSubview(createAccountButton)
         view.addSubview(headerView)
     }
+    
     //헤더 뷰 구성 / 서브뷰는 하나만 있어야 하므로 제약을 추가하겠습니다
     private func configureHeaderView() {
         guard headerView.subviews.count == 1 else {
@@ -135,26 +196,67 @@ class LoginViewController: UIViewController {
         //인스타그램 로고를 추가하겠습니다.
         let imageView = UIImageView(image: UIImage(named: "인스타그램텍스트"))
         headerView.addSubview(imageView)
-        imageView.contentMode.rawValue
+        imageView.contentMode = .scaleAspectFit
+        imageView.frame = CGRect(
+            x: headerView.width/4,
+            y: view.safeAreaInsets.top,
+            width: headerView.width/2.0,
+            height: headerView.height - view.safeAreaInsets.top
+        )
     }
     
+    //MARK: - 버튼 액션
     
-    //버튼의 액션을 생성
     @objc private func didTabLoginButton() {
+        //탭 될때 키보드를 닫도록 설정
+        passwordField.resignFirstResponder()
+        usernameEmailField.resignFirstResponder()
+        //텍스트가 비어 있는지 / 패스워드가 8자 이상인지 유효성 검사
+        guard let usernameEmail = usernameEmailField.text, !usernameEmail.isEmpty,
+              let password = passwordField.text, !password.isEmpty, password.count >= 8 else {
+            return
+        }
+        //로그인 기능 구현
         
     }
     
     @objc private func didTabTermsButton() {
-        
+        //url은 옵셔널값이기 때문에 가드문으로 바인딩 해줍니다.
+        guard let url = URL(string: "https://help.instagram.com/581066165581870") else {
+            return
+        }
+        let vc = SFSafariViewController(url: url)
+        present(vc, animated: true)
     }
     
     @objc private func didTabPrivacyButton() {
+        guard let url = URL(string: "https://help.instagram.com/519522125107875") else {
+            return
+        }
+        let vc = SFSafariViewController(url: url)
+        present(vc, animated: true)
         
     }
     
     @objc private func didTabCreateAccountButton() {
-        
+        let vc = RegistrationViewController()
+        present(vc, animated: true)
     }
 
 
+}
+
+//MARK: - 델리게이트
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        //사용자가 리턴키를 탭할떄 자동으로 다음으로 넘어가도록 구현
+        if textField == usernameEmailField {
+            passwordField.becomeFirstResponder()
+        } else if textField == passwordField {
+            didTabLoginButton()
+        }
+        return true
+    }
+    
 }
