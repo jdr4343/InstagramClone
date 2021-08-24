@@ -28,11 +28,11 @@
 		407A1FD226D3F5940058F84D /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407A1FD126D3F5940058F84D /* SearchResultViewController.swift */; };
 		407A1FD426D3F64A0058F84D /* PostEditeorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407A1FD326D3F64A0058F84D /* PostEditeorViewController.swift */; };
 		407A1FD626D3F6760058F84D /* PublishPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407A1FD526D3F6760058F84D /* PublishPostViewController.swift */; };
-		407A1FDA26D40F930058F84D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 407A1FD926D40F930058F84D /* GoogleService-Info.plist */; };
 		407A1FDD26D4140D0058F84D /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407A1FDC26D4140D0058F84D /* DatabaseManager.swift */; };
 		407A1FDF26D416290058F84D /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407A1FDE26D416290058F84D /* AuthManager.swift */; };
 		407A1FE126D416B30058F84D /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407A1FE026D416B30058F84D /* StorageManager.swift */; };
 		407A1FE326D4A7400058F84D /* Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407A1FE226D4A7400058F84D /* Extention.swift */; };
+		407A1FE826D4F6BE0058F84D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 407A1FE726D4F6BE0058F84D /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,11 +59,11 @@
 		407A1FD126D3F5940058F84D /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 		407A1FD326D3F64A0058F84D /* PostEditeorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEditeorViewController.swift; sourceTree = "<group>"; };
 		407A1FD526D3F6760058F84D /* PublishPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishPostViewController.swift; sourceTree = "<group>"; };
-		407A1FD926D40F930058F84D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		407A1FDC26D4140D0058F84D /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		407A1FDE26D416290058F84D /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		407A1FE026D416B30058F84D /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		407A1FE226D4A7400058F84D /* Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extention.swift; sourceTree = "<group>"; };
+		407A1FE726D4F6BE0058F84D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		611D66800F03E20B6D0872A8 /* Pods-InstagramClone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramClone.release.xcconfig"; path = "Target Support Files/Pods-InstagramClone/Pods-InstagramClone.release.xcconfig"; sourceTree = "<group>"; };
 		6895FF0C0C209606E9477F29 /* Pods-InstagramClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramClone.debug.xcconfig"; path = "Target Support Files/Pods-InstagramClone/Pods-InstagramClone.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,7 +124,7 @@
 		407A1FB326D3F2B60058F84D /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				407A1FD926D40F930058F84D /* GoogleService-Info.plist */,
+				407A1FE726D4F6BE0058F84D /* GoogleService-Info.plist */,
 				407A1F9F26D3E47B0058F84D /* AppDelegate.swift */,
 				407A1FA126D3E47B0058F84D /* SceneDelegate.swift */,
 				407A1FDC26D4140D0058F84D /* DatabaseManager.swift */,
@@ -281,7 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				407A1FAC26D3E47D0058F84D /* LaunchScreen.storyboard in Resources */,
-				407A1FDA26D40F930058F84D /* GoogleService-Info.plist in Resources */,
+				407A1FE826D4F6BE0058F84D /* GoogleService-Info.plist in Resources */,
 				407A1FA926D3E47D0058F84D /* Assets.xcassets in Resources */,
 				407A1FA726D3E47B0058F84D /* Main.storyboard in Resources */,
 			);

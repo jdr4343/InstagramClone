@@ -35,3 +35,11 @@ extension UIView {
 struct Constants {
     static let cornerRadius: CGFloat = 8.0
 }
+
+
+//firebase의 데이터 베이스에는 마침표를 사용할수 없습니다. 따라서 그냥 email을 child에 삽입 할경우 에러가 나기 때문에 안전한 이메일을 생성하는 함수를 만들어 줘야 합니다.
+extension String {
+     func safeDatabaseKey() -> String {
+        return self.replacingOccurrences(of: "@", with: "-").replacingOccurrences(of: ".", with: "-")
+    }
+}

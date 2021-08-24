@@ -239,7 +239,7 @@ class LoginViewController: UIViewController {
                 } else {
                     let alert = UIAlertController(
                         title: "회원정보가 다릅니다.",
-                        message: "아이디와 패스워드가 다릅니다.",
+                        message: "아이디 혹은 패스워드가 다릅니다.",
                         preferredStyle: .alert)
                     alert.addAction(UIAlertAction(
                                         title: "닫기",
@@ -272,7 +272,8 @@ class LoginViewController: UIViewController {
     
     @objc private func didTabCreateAccountButton() {
         let vc = RegistrationViewController()
-        present(vc, animated: true)
+        vc.title = "계정 생성"
+        present(UINavigationController(rootViewController: vc),animated: true)
     }
     
     
