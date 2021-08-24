@@ -216,8 +216,40 @@ class LoginViewController: UIViewController {
               let password = passwordField.text, !password.isEmpty, password.count >= 8 else {
             return
         }
-        //로그인 기능 구현
         
+        //로그인 기능 구현
+        var username: String?
+        var email: String?
+        
+        //"@","."을 포함하면 이메일로 저장하고 아니라면 사용자이름으로 저장하겠습니다.
+        if usernameEmail.contains("@"),usernameEmail.contains(".") {
+            email = usernameEmail
+        } else {
+            username = usernameEmail
+        }
+        
+        //사용자 정보를 확인하고 맞다면 창을 닫고 아니라면 경고 메시지를 띄우겠습니다. / async를 사용하여 비동기 처리 하겠습니다.
+        AuthManager.shared.loginUser(
+            username: username ,
+            email: email,
+            password: password) { success in
+            DispatchQueue.main.async {
+                if success {
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    let alert = UIAlertController(
+                        title: "회원정보가 다릅니다.",
+                        message: "아이디와 패스워드가 다릅니다.",
+                        preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(
+                                        title: "닫기",
+                                        style: .cancel,
+                                        handler: nil))
+                    self.present(alert, animated: true)
+                }
+            }
+            
+        }
     }
     
     @objc private func didTabTermsButton() {
@@ -242,8 +274,8 @@ class LoginViewController: UIViewController {
         let vc = RegistrationViewController()
         present(vc, animated: true)
     }
-
-
+    
+    
 }
 
 //MARK: - 델리게이트
