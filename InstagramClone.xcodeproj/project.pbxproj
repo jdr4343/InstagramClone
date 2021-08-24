@@ -32,6 +32,7 @@
 		407A1FDD26D4140D0058F84D /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407A1FDC26D4140D0058F84D /* DatabaseManager.swift */; };
 		407A1FDF26D416290058F84D /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407A1FDE26D416290058F84D /* AuthManager.swift */; };
 		407A1FE126D416B30058F84D /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407A1FE026D416B30058F84D /* StorageManager.swift */; };
+		407A1FE326D4A7400058F84D /* Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407A1FE226D4A7400058F84D /* Extention.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		407A1FDC26D4140D0058F84D /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		407A1FDE26D416290058F84D /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		407A1FE026D416B30058F84D /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		407A1FE226D4A7400058F84D /* Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extention.swift; sourceTree = "<group>"; };
 		611D66800F03E20B6D0872A8 /* Pods-InstagramClone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramClone.release.xcconfig"; path = "Target Support Files/Pods-InstagramClone/Pods-InstagramClone.release.xcconfig"; sourceTree = "<group>"; };
 		6895FF0C0C209606E9477F29 /* Pods-InstagramClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramClone.debug.xcconfig"; path = "Target Support Files/Pods-InstagramClone/Pods-InstagramClone.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -128,6 +130,7 @@
 				407A1FDC26D4140D0058F84D /* DatabaseManager.swift */,
 				407A1FDE26D416290058F84D /* AuthManager.swift */,
 				407A1FE026D416B30058F84D /* StorageManager.swift */,
+				407A1FE226D4A7400058F84D /* Extention.swift */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				407A1FD226D3F5940058F84D /* SearchResultViewController.swift in Sources */,
 				407A1FC426D3F47E0058F84D /* LoginViewController.swift in Sources */,
 				407A1FD026D3F5510058F84D /* SearchViewController.swift in Sources */,
+				407A1FE326D4A7400058F84D /* Extention.swift in Sources */,
 				407A1FCE26D3F5360058F84D /* LIstViewController.swift in Sources */,
 				407A1FD426D3F64A0058F84D /* PostEditeorViewController.swift in Sources */,
 				407A1FDF26D416290058F84D /* AuthManager.swift in Sources */,
