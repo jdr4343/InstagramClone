@@ -54,9 +54,24 @@ final class SettingsViewController: UIViewController {
         ]
         data.append(section)
     }
-    
+    //로그아웃 기능을 구현합니다.
     private func didTabLogOut() {
-        
+        AuthManager.shared.logOut(completion: { success in
+            DispatchQueue.main.async {
+                if success {
+                    //로그인 화면 호출
+                    let loginVC = LoginViewController()
+                    loginVC.modalPresentationStyle = .fullScreen
+                    self.present(loginVC,animated: true) {
+                        //현재 설정화면과 모든 스택을 사라지게 하고 rootViewController로 돌아갑니다.그러한 후 탭바중 0번째 인덱스로 이동합니다.
+                        self.navigationController?.popToRootViewController(animated: true)
+                        self.tabBarController?.selectedIndex = 0
+                    }
+                } else {
+                    //error
+                }
+            }
+        })
     }
 
    
@@ -75,13 +90,15 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "Hello wolrd"
+        cell.textLabel?.text = data[indexPath.section][indexPath.row].title
         return cell
         
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         //셀 선택을 처리
+        let model = data[indexPath.section][indexPath.row].handler()
+        
     }
     
 }
