@@ -54,24 +54,37 @@ final class SettingsViewController: UIViewController {
         ]
         data.append(section)
     }
-    //로그아웃 기능을 구현합니다.
+    //로그아웃 기능을 구현합니다. / 이때 경고창도 만들어 실제로 로그아웃 할건지 물어보겠습니다.
     private func didTabLogOut() {
-        AuthManager.shared.logOut(completion: { success in
-            DispatchQueue.main.async {
-                if success {
-                    //로그인 화면 호출
-                    let loginVC = LoginViewController()
-                    loginVC.modalPresentationStyle = .fullScreen
-                    self.present(loginVC,animated: true) {
-                        //현재 설정화면과 모든 스택을 사라지게 하고 rootViewController로 돌아갑니다.그러한 후 탭바중 0번째 인덱스로 이동합니다.
-                        self.navigationController?.popToRootViewController(animated: true)
-                        self.tabBarController?.selectedIndex = 0
+        let actionSheet = UIAlertController(title: "로그아웃",
+                                            message: "로그아웃 하시겠습니까?",
+                                            preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "닫기", style: .cancel, handler: nil))
+        //destructive는 사용자 데이터를 삭제하거나 앱을 취소 할수 없게 변경하는 작업에 이 옵션을 사용합니다.이옵션을 쓰면 강조 표현이 들어갑니다!!이게 중요한 점이쥬!!굳이 색깔을 안넣어도 된다니! 🤩
+        actionSheet.addAction(UIAlertAction(title: "로그아웃", style: .destructive, handler: { _ in
+            AuthManager.shared.logOut(completion: { success in
+                DispatchQueue.main.async {
+                    if success {
+                        //로그인 화면 호출
+                        let loginVC = LoginViewController()
+                        loginVC.modalPresentationStyle = .fullScreen
+                        self.present(loginVC,animated: true) {
+                            //로그아웃 하고 다시 프로필 부터 뜨지 않게 하기 위해서 현재 설정화면과 모든 스택을 사라지게 하고 rootViewController로 돌아갑니다.그러한 후 탭바중 0번째 인덱스로 이동합니다.
+                            self.navigationController?.popToRootViewController(animated: true)
+                            self.tabBarController?.selectedIndex = 0
+                        }
+                    } else {
+                        fatalError("로그아웃 할수 없습니다")
                     }
-                } else {
-                    //error
                 }
-            }
-        })
+            })
+        }))
+        //아이패드로 켰을때 충돌하지 않게 하기위해서 PresentationController 위에 팝을 할당하겠습니다.
+        //아이패드에서 이 두 코드를 할당해주지 않으면 액션 시트가 스스로를 표시하는 방법을 알지 못해 크래쉬가 발생하게 됩니다.
+        actionSheet.popoverPresentationController?.sourceView = tableView
+        actionSheet.popoverPresentationController?.sourceRect = tableView.bounds
+        
+        present(actionSheet, animated: true)
     }
 
    
