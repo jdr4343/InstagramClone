@@ -7,10 +7,31 @@
 
 import UIKit
 
-class EditProfileViewController: UIViewController {
+struct EditProfileFormModel {
+    let label: String
+    let placeholder: String
+    var value : String?
+}
 
+
+final class EditProfileViewController: UIViewController {
+
+    private let tableView: UITableView = {
+        let table = UITableView()
+        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        return table
+    }()
+    
+    private var models = [[EditProfileFormModel]]()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
+        view.addSubview(tableView)
+        tableView.tableHeaderView = createTableHeaderView()
+        tableView.dataSource = self
+        configureModels()
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "저장",
                                                             style: .done,
                                                             target: self,
@@ -19,17 +40,41 @@ class EditProfileViewController: UIViewController {
                                                             style: .plain,
                                                             target: self,
                                                             action: #selector(didTabCancel))
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.frame = view.bounds
+    }
 
-        
+    private func configureModels() {
+        //이름, 사용자 이름, 웹사이트, 약력
+        let sectionLabels1 = ["이름","사용자 이름","약력"]
+        var section1 = [EditProfileFormModel]()
+        for label in sectionLabels1 {
+            let model = EditProfileFormModel(label: label, placeholder: "Enter\(label)...", value: nil)
+            section1.append(model)
+        }
+        models.append(section1)
+        //이메일, 폰번호 , 성별
+        let sectionLabels2 = ["이메일","전화 번호","성별"]
+        var section2 = [EditProfileFormModel]()
+        for label in sectionLabels2 {
+            let model = EditProfileFormModel(label: label, placeholder: "Enter\(label)...", value: nil)
+            section2.append(model)
+        }
+        models.append(section2)
     }
     
     
-    @objc func didTabSave() {
+    //MARK: - 액션
+    
+    @objc private func didTabSave() {
         
     }
 
-    @objc func didTabCancel() {
-        
+    @objc private func didTabCancel() {
+        dismiss(animated: true, completion: nil)
     }
     
     @objc private func didTapChangeProfilePicture() {
@@ -51,4 +96,57 @@ class EditProfileViewController: UIViewController {
         present(actionSheet, animated: true)
     }
 
+    @objc private func didTabProfilePhotoButton() {
+        
+    }
+}
+
+//MARK: -테이블 뷰
+
+extension EditProfileViewController: UITableViewDataSource {
+    //헤더 생성
+    private func createTableHeaderView() -> UIView {
+        let header = UIView(frame: CGRect(x: 0, y: 0, width: view.width, height: view.height/4).integral)
+        
+            //사용자의 프로필의 현재사진을 보여주고 그것을 탭 하면 사용자가 자신의 사진을 변경할수 있도록 하는 버튼을 추가하겠습니다
+        let size = header.height/1.5
+        let ProfilePhotoButton = UIButton(frame: CGRect(x: (view.width-size)/2,
+                                                        y: (header.height-size)/2,
+                                                        width: size, height: size))
+        header.addSubview(ProfilePhotoButton)
+        ProfilePhotoButton.layer.masksToBounds = true
+        ProfilePhotoButton.layer.cornerRadius = size/2.0
+        ProfilePhotoButton.setBackgroundImage(UIImage(systemName: "person.circle"), for: .normal)
+        ProfilePhotoButton.tintColor = .label
+        ProfilePhotoButton.layer.borderWidth = 1
+        ProfilePhotoButton.layer.borderColor = UIColor.secondarySystemBackground.cgColor
+        ProfilePhotoButton.addTarget(self, action: #selector(didTabProfilePhotoButton), for: .touchUpInside)
+        
+        
+        
+        return header
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return models.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return models[section].count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let model = models[indexPath.section][indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = model.label
+        return cell
+    }
+    //푸터
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        guard section == 1 else{
+            return nil
+        }
+        return "개인 정보"
+    }
+    
 }
