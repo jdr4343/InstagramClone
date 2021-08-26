@@ -15,8 +15,8 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         configureNavigationBar()
-        
         addCollectionView()
+        
 
     }
     
@@ -49,6 +49,15 @@ class ProfileViewController: UIViewController {
         collectionView?.delegate = self
         collectionView?.dataSource = self
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+       collectionView?.backgroundColor = .red
+        
+        //셀
+        collectionView?.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: PhotoCollectionViewCell.identifier)
+        
+        //헤더 / 전체 컬렉션 보기의 헤더가 아니라 섹션당 헤더 입니다!!!😱
+        collectionView?.register(ProfileInfoHeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProfileInfoHeaderCollectionReusableView.identifier)
+        collectionView?.register(ProfileTabsCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProfileTabsCollectionReusableView.identifier)
+        
         guard let collectionView = collectionView else {
             return
         }
@@ -62,11 +71,13 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return 30
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath) as! PhotoCollectionViewCell
+        cell.backgroundColor = .systemBlue
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

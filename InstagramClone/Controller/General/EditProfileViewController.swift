@@ -68,9 +68,9 @@ final class EditProfileViewController: UIViewController {
     
     
     //MARK: - 액션
-    
+    //변경사항을 저장할 것 입니다.
     @objc private func didTabSave() {
-        
+        dismiss(animated: true, completion: nil)
     }
 
     @objc private func didTabCancel() {
@@ -155,8 +155,9 @@ extension EditProfileViewController: UITableViewDataSource, FormTableViewCellDel
         return cell
     }
     
-    func formTableViewCell(_ cell: FormTableViewCell, didUpdateField value: String?) {
-        print("Field update to: \(value ?? "nil")")
+    func formTableViewCell(_ cell: FormTableViewCell, didUpdateField updateModel: EditProfileFormModel) {
+        // 모델을 업데이트 할것입니다.
+        
     }
     
     
