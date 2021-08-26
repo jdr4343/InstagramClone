@@ -12,8 +12,12 @@ struct SettingCellModel {
     let handler: (() -> Void)
 }
 
-//MARK: - final class
+enum SettingURLType {
+    case terms, privacy, help
+}
 
+//MARK: - final class
+import SafariServices
 import UIKit
 ///컨트롤러 화면 사용자 설정을 표시합니다.
 final class SettingsViewController: UIViewController {
@@ -47,13 +51,67 @@ final class SettingsViewController: UIViewController {
     
 //MARK: - 함수
     private func configureModels() {
-        let section = [
+        //셀과 섹션을 추가 합니다.
+        data.append([
+            SettingCellModel(title: "프로필 변경") { [weak self] in
+                self?.didTabEditProfile()
+            },
+            SettingCellModel(title: "친구 초대") { [weak self] in
+                self?.didTabInviteFriends()
+            },
+            SettingCellModel(title: "원본 게시물 저장") { [weak self] in
+                self?.didTabSaveOriginalPosts()
+            }
+        ])
+        data.append([ //위의 모델과 연결하고 아래의 기능구현에서 작성을 합니다.
+            SettingCellModel(title: "서비스 약관") { [weak self] in
+                self?.openURL(type: .terms)
+            },
+            SettingCellModel(title: "개인 정보 보호 정책") { [weak self] in
+                self?.openURL(type: .privacy)
+            },
+            SettingCellModel(title: "도움말 / 피드백") { [weak self] in
+                self?.openURL(type: .help)
+            }
+        ])
+        data.append([
             SettingCellModel(title: "로그아웃") { [weak self] in
                 self?.didTabLogOut()
             }
-        ]
-        data.append(section)
+        ])
     }
+    
+    //MARK: - 기능구현
+    private func didTabEditProfile() {
+        let vc = EditProfileViewController()
+        vc.title = "프로필 변경"
+        let navVC = UINavigationController(rootViewController: vc)
+        present(navVC, animated: true)
+    }
+    
+    private func didTabInviteFriends() {
+        //공유 시트를 표시하여 친구를 표시합니다.
+    }
+    
+    private func didTabSaveOriginalPosts() {
+        
+    }
+    
+    // 인스타 그램 페이지의 웹과 연결하겠습니다.
+    private func openURL(type: SettingURLType) {
+        let urlString: String
+        switch type {
+        case .terms: urlString = "https://help.instagram.com/581066165581870"
+        case .privacy: urlString = "https://help.instagram.com/519522125107875"
+        case .help: urlString = "https://help.instagram.com/"
+        }
+        guard let url = URL(string: urlString) else {
+            return
+        }
+        let vc = SFSafariViewController(url: url)
+        present(vc, animated: true)
+    }
+    
     //로그아웃 기능을 구현합니다. / 이때 경고창도 만들어 실제로 로그아웃 할건지 물어보겠습니다.
     private func didTabLogOut() {
         let actionSheet = UIAlertController(title: "로그아웃",
@@ -104,6 +162,8 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = data[indexPath.section][indexPath.row].title
+        //셀에 인디케이터를 추가 해줍니다.
+        cell.accessoryType = .disclosureIndicator
         return cell
         
     }
