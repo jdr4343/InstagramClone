@@ -16,6 +16,8 @@ class ProfileViewController: UIViewController {
         view.backgroundColor = .systemBackground
         configureNavigationBar()
         addCollectionView()
+        collectionView?.delegate = self
+        collectionView?.dataSource = self
         
 
     }
@@ -46,8 +48,6 @@ class ProfileViewController: UIViewController {
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.itemSize = CGSize(width: view.width/3, height: view.width/3)
-        collectionView?.delegate = self
-        collectionView?.dataSource = self
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
        collectionView?.backgroundColor = .red
         
@@ -55,8 +55,12 @@ class ProfileViewController: UIViewController {
         collectionView?.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: PhotoCollectionViewCell.identifier)
         
         //헤더 / 전체 컬렉션 보기의 헤더가 아니라 섹션당 헤더 입니다!!!😱
-        collectionView?.register(ProfileInfoHeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProfileInfoHeaderCollectionReusableView.identifier)
-        collectionView?.register(ProfileTabsCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProfileTabsCollectionReusableView.identifier)
+        collectionView?.register(ProfileInfoHeaderCollectionReusableView.self,
+                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                 withReuseIdentifier: ProfileInfoHeaderCollectionReusableView.identifier)
+        collectionView?.register(ProfileTabsCollectionReusableView.self,
+                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                 withReuseIdentifier: ProfileTabsCollectionReusableView.identifier)
         
         guard let collectionView = collectionView else {
             return
@@ -69,13 +73,15 @@ class ProfileViewController: UIViewController {
 
 //MARK: - 확장
 
-extension ProfileViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        print("dsad")
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath) as! PhotoCollectionViewCell
+        
         cell.backgroundColor = .systemBlue
         return cell
     }
