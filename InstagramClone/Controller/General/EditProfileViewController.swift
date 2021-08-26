@@ -18,7 +18,7 @@ final class EditProfileViewController: UIViewController {
 
     private let tableView: UITableView = {
         let table = UITableView()
-        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        table.register(FormTableViewCell.self, forCellReuseIdentifier: FormTableViewCell.identifier)
         return table
     }()
     
@@ -103,7 +103,9 @@ final class EditProfileViewController: UIViewController {
 
 //MARK: -테이블 뷰
 
-extension EditProfileViewController: UITableViewDataSource {
+extension EditProfileViewController: UITableViewDataSource, FormTableViewCellDelegate {
+    
+    
     //헤더 생성
     private func createTableHeaderView() -> UIView {
         let header = UIView(frame: CGRect(x: 0, y: 0, width: view.width, height: view.height/4).integral)
@@ -126,6 +128,13 @@ extension EditProfileViewController: UITableViewDataSource {
         
         return header
     }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard section == 1 else{
+            return nil
+        }
+        return "개인 정보"
+    }
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return models.count
@@ -137,16 +146,19 @@ extension EditProfileViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = models[indexPath.section][indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = model.label
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: FormTableViewCell.identifier, for: indexPath) as? FormTableViewCell else {
+            return UITableViewCell()
+        }
+        //지금 이경우는 FormTableViewCell의 configure 함수를 불러왔습니다.
+        cell.configure(with: model)
+        cell.delegate = self
         return cell
     }
-    //푸터
-    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        guard section == 1 else{
-            return nil
-        }
-        return "개인 정보"
+    
+    func formTableViewCell(_ cell: FormTableViewCell, didUpdateField value: String?) {
+        print("Field update to: \(value ?? "nil")")
     }
     
+    
 }
+ 
