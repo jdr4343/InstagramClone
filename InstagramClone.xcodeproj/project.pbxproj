@@ -23,7 +23,7 @@
 		407A1FC826D3F4E70058F84D /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407A1FC726D3F4E70058F84D /* PostViewController.swift */; };
 		407A1FCA26D3F5080058F84D /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407A1FC926D3F5080058F84D /* EditProfileViewController.swift */; };
 		407A1FCC26D3F5220058F84D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407A1FCB26D3F5220058F84D /* SettingsViewController.swift */; };
-		407A1FCE26D3F5360058F84D /* LIstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407A1FCD26D3F5360058F84D /* LIstViewController.swift */; };
+		407A1FCE26D3F5360058F84D /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407A1FCD26D3F5360058F84D /* ListViewController.swift */; };
 		407A1FD026D3F5510058F84D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407A1FCF26D3F5510058F84D /* SearchViewController.swift */; };
 		407A1FD226D3F5940058F84D /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407A1FD126D3F5940058F84D /* SearchResultViewController.swift */; };
 		407A1FD426D3F64A0058F84D /* PostEditeorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407A1FD326D3F64A0058F84D /* PostEditeorViewController.swift */; };
@@ -63,7 +63,7 @@
 		407A1FC726D3F4E70058F84D /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		407A1FC926D3F5080058F84D /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		407A1FCB26D3F5220058F84D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		407A1FCD26D3F5360058F84D /* LIstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LIstViewController.swift; sourceTree = "<group>"; };
+		407A1FCD26D3F5360058F84D /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		407A1FCF26D3F5510058F84D /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		407A1FD126D3F5940058F84D /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 		407A1FD326D3F64A0058F84D /* PostEditeorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEditeorViewController.swift; sourceTree = "<group>"; };
@@ -225,7 +225,7 @@
 				407A1FC726D3F4E70058F84D /* PostViewController.swift */,
 				407A1FC926D3F5080058F84D /* EditProfileViewController.swift */,
 				407A1FCB26D3F5220058F84D /* SettingsViewController.swift */,
-				407A1FCD26D3F5360058F84D /* LIstViewController.swift */,
+				407A1FCD26D3F5360058F84D /* ListViewController.swift */,
 				407A1FCF26D3F5510058F84D /* SearchViewController.swift */,
 				407A1FD126D3F5940058F84D /* SearchResultViewController.swift */,
 				407A1FD326D3F64A0058F84D /* PostEditeorViewController.swift */,
@@ -410,7 +410,7 @@
 				407A200F26D6BCC80058F84D /* IGFeedPostGeneralTableViewCell.swift in Sources */,
 				407A1FE326D4A7400058F84D /* Extention.swift in Sources */,
 				4095015E26D7BA9F00416CA6 /* ProfileInfoHeaderCollectionReusableView.swift in Sources */,
-				407A1FCE26D3F5360058F84D /* LIstViewController.swift in Sources */,
+				407A1FCE26D3F5360058F84D /* ListViewController.swift in Sources */,
 				407A1FD426D3F64A0058F84D /* PostEditeorViewController.swift in Sources */,
 				407A1FDF26D416290058F84D /* AuthManager.swift in Sources */,
 				407A1FBF26D3F3FC0058F84D /* ProfileViewController.swift in Sources */,

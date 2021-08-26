@@ -12,8 +12,9 @@ class ProfileTabsCollectionReusableView: UICollectionReusableView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .yellow
+        backgroundColor = .systemBackground
         clipsToBounds = true
+        
     }
     
     required init?(coder: NSCoder) {

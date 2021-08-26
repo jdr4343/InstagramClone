@@ -8,7 +8,7 @@
 import UIKit
 ///프로필 화면 입니다.
 class ProfileViewController: UIViewController {
-
+    
     private var collectionView: UICollectionView?
     
     //사용자 게시물을 나타내는 모델인 UserPost 배열 생성
@@ -22,7 +22,7 @@ class ProfileViewController: UIViewController {
         collectionView?.delegate = self
         collectionView?.dataSource = self
         
-
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -79,7 +79,7 @@ class ProfileViewController: UIViewController {
     
 }
 
-//MARK: - 확장
+//MARK: - 테이블뷰
 
 extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -88,9 +88,9 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0 {
-        return 0
+            return 0
         }
- //       return userPosts.count
+        //       return userPosts.count
         return 30
     }
     
@@ -126,17 +126,53 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         }
         
         let profileHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ProfileInfoHeaderCollectionReusableView.identifier, for: indexPath) as! ProfileInfoHeaderCollectionReusableView
+        
+        profileHeader.delegate = self
         return profileHeader
     }
     //델리게이트에게 지정된 섹션에 있는 헤더뷰의 크기를 묻습니다.
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         if section == 0 {
-        return CGSize(width: collectionView.width,
-                      height: collectionView.height/3)
+            return CGSize(width: collectionView.width,
+                          height: collectionView.height/3)
         }
         //섹션 탭의 크기 / 인스타그램에는 두개의 헤더가 존재합니다... 사람 찾아보기라고..ㅎㅎ
         return CGSize(width: collectionView.width,
                       height: 65)
     }
+    
+}
+//MARK:
+
+//MARK: ProfileInfoHeaderCollectionReusableViewDelegate
+
+extension ProfileViewController: ProfileInfoHeaderCollectionReusableViewDelegate {
+    func profileHeaderDidTapPostsButton(_ header: ProfileInfoHeaderCollectionReusableView) {
+        //게시물 화면으로 스크롤 하겠습니다.
+        collectionView?.scrollToItem(at: IndexPath(row: 0, section: 1), at: .top, animated: true)
+    }
+    
+    func profileHeaderDidTapfollowingButton(_ header: ProfileInfoHeaderCollectionReusableView) {
+        //목록 컨트롤러를 열어 사용자 팔로워를 보여줘야 하므로 뷰를 연결하겠습니다.
+        let vc = ListViewController()
+        vc.title = "팔로워"
+        vc.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func profileHeaderDidTapfollowersButton(_ header: ProfileInfoHeaderCollectionReusableView) {
+        let vc = ListViewController()
+        vc.title = "팔로잉"
+        vc.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func profileHeaderDidTapeditProfileButton(_ header: ProfileInfoHeaderCollectionReusableView) {
+        //프로필 편집 컨트롤러로 연결하겠습니다.
+        let vc = EditProfileViewController()
+        vc.title = "프로필 변경"
+        present(UINavigationController(rootViewController: vc),animated: true)
+    }
+    
     
 }

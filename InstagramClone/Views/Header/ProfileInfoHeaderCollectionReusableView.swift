@@ -60,12 +60,16 @@ final class ProfileInfoHeaderCollectionReusableView: UICollectionReusableView {
     //라벨
     private let nameLabel: UILabel = {
         let label = UILabel()
-        
+        label.text = "신지훈"
+        label.textColor = .label
+        label.numberOfLines = 1
         return label
     }()
     private let bioLabel: UILabel = {
         let label = UILabel()
-        
+        label.text = "새로운 계정입니다!"
+        label.textColor = .label
+        label.numberOfLines = 1
         return label
     }()
     
@@ -76,6 +80,7 @@ final class ProfileInfoHeaderCollectionReusableView: UICollectionReusableView {
         backgroundColor = .systemBackground
         clipsToBounds = true
         addSubViews()
+        addButtonAction()
     }
     
     required init?(coder: NSCoder) {
@@ -119,7 +124,7 @@ final class ProfileInfoHeaderCollectionReusableView: UICollectionReusableView {
                                  y: 5 + profilePhotoImageView.bottom,
                                  width:  width-10,
                                  height: 50).integral
-        nameLabel.frame = CGRect(x: 5,
+        bioLabel.frame = CGRect(x: 5,
                                  y: 5 + nameLabel.bottom,
                                  width:  width-10,
                                  height: bioLabelSize.height).integral
@@ -137,5 +142,25 @@ final class ProfileInfoHeaderCollectionReusableView: UICollectionReusableView {
         addSubview(nameLabel)
         addSubview(bioLabel)
     }
+    private func addButtonAction() {
+        postButton.addTarget(self, action: #selector(didTabPostButton), for: .touchUpInside)
+        followingButton.addTarget(self, action: #selector(didTabFollowingButton), for: .touchUpInside)
+        followersButton.addTarget(self, action: #selector(didTabFollowerButton), for: .touchUpInside)
+        editProfileButton.addTarget(self, action: #selector(didTabEditProfileButton), for: .touchUpInside)
+    }
     
+    //델리게이트를 활용해 버튼을 탭했다고 전할것 입니다.발생한 일을 뷰 컨트롤러에 전달하여 뷰 컨트롤러 핸들러가 이 뷰 클래스가 아닌곳에서 처리할수 있도록 하는 방법입니다.
+    @objc private func didTabPostButton() {
+        delegate?.profileHeaderDidTapPostsButton(self)
+    }
+    @objc private func didTabFollowingButton() {
+        delegate?.profileHeaderDidTapfollowingButton(self)
+        
+    }
+    @objc private func didTabFollowerButton() {
+        delegate?.profileHeaderDidTapfollowersButton(self)
+    }
+    @objc private func didTabEditProfileButton() {
+        delegate?.profileHeaderDidTapeditProfileButton(self)
+    }
 }
