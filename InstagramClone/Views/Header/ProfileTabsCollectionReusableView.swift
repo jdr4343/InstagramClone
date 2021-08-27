@@ -12,17 +12,15 @@ protocol ProfileTabsCollectionReusableViewDelegate: AnyObject {
     func didTapTaggedButton()
 }
 
-
+//프로필의 헤더 하단을 설정하는 뷰 입니다.
 class ProfileTabsCollectionReusableView: UICollectionReusableView {
     
     static let identifier = "ProfileTabsCollectionReusableView"
     
     public weak var delegate: ProfileTabsCollectionReusableViewDelegate?
     
-    struct Constants {
-        static let padding: CGFloat = 8
-    }
     
+    //격자무니 버튼과 태그 버튼을 가질 것입니다.
     private let gridButton: UIButton = {
        let button = UIButton()
         button.clipsToBounds = true
@@ -52,6 +50,10 @@ class ProfileTabsCollectionReusableView: UICollectionReusableView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    //프레임을 정할 패딩입니다.
+    struct Constants {
+        static let padding: CGFloat = 8
     }
     
     override func layoutSubviews() {

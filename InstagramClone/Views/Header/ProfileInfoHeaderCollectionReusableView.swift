@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+//다른 뷰에서 버튼의 액션을 연결하기 위해 선언한 프로토콜 입니다.
 protocol ProfileInfoHeaderCollectionReusableViewDelegate: AnyObject {
     func profileHeaderDidTapPostsButton(_ header: ProfileInfoHeaderCollectionReusableView)
     func profileHeaderDidTapfollowingButton(_ header: ProfileInfoHeaderCollectionReusableView)
@@ -15,12 +15,15 @@ protocol ProfileInfoHeaderCollectionReusableViewDelegate: AnyObject {
 }
 
 //프로필의 상단에 자리할 헤더를 만들겠습니다.
+
 final class ProfileInfoHeaderCollectionReusableView: UICollectionReusableView {
     
     static let identifier = "ProfileInfoHeaderCollectionReusableView"
     
+    //메모리 누수를 막기위해 weak var로 선언합니다.
     public weak var delegate: ProfileInfoHeaderCollectionReusableViewDelegate?
-    //이미지
+    
+    //헤더에는 프로필 이미지,게시물 올리기 버튼. 팔로워 확인 버튼, 팔로잉 확인 버튼, 프로필 편집 버튼 ,이름 라벨, 유저이름 라벨이 있습니다.
     private let profilePhotoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "testImage")
@@ -142,6 +145,7 @@ final class ProfileInfoHeaderCollectionReusableView: UICollectionReusableView {
         addSubview(nameLabel)
         addSubview(bioLabel)
     }
+    //버튼 액션을 추가하는 함수입니다.
     private func addButtonAction() {
         postButton.addTarget(self, action: #selector(didTabPostButton), for: .touchUpInside)
         followingButton.addTarget(self, action: #selector(didTabFollowingButton), for: .touchUpInside)

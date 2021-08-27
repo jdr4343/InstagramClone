@@ -13,7 +13,7 @@ public class AuthManager {
     
     //MARK: - public
     
-    //회원가입
+    //회원가입에대한 내용입니다.
     public func registerNewUser(username: String,email: String, password: String, completion: @escaping (Bool) -> Void) {
         
         //-사용자이름을 사용할수 있는지 확입합니다.
@@ -49,7 +49,7 @@ public class AuthManager {
         }
     }
     
-    ///로그인을 시도 합니다.
+    //로그인을 시도 합니다.
     public func loginUser(username: String?, email: String?, password: String, completion: @escaping (Bool) -> Void) {
         if let email = email {
             Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
@@ -65,7 +65,7 @@ public class AuthManager {
         }
     }
     
-    /// 로그아웃을 시도합니다.
+    // 로그아웃을 시도합니다.
     public func logOut(completion: (Bool) -> Void) {
         do {
             try Auth.auth().signOut()

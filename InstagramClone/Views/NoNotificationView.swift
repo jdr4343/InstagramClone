@@ -9,6 +9,7 @@ import UIKit
 //알람이 없을경우 보여줄 화면입니다.
 class NoNotificationView: UIView {
 
+    //알람이 없을경우 화면 가운데에 "bell" 이미지와 함께 알람이 없다는 것을 알려줄 UIView입니다.
     private let label: UILabel = {
         let label = UILabel()
         label.text = "현재 알림이 없습니다."
