@@ -155,14 +155,24 @@ extension ProfileViewController: ProfileInfoHeaderCollectionReusableViewDelegate
     
     func profileHeaderDidTapfollowingButton(_ header: ProfileInfoHeaderCollectionReusableView) {
         //목록 컨트롤러를 열어 사용자 팔로워를 보여줘야 하므로 뷰를 연결하겠습니다.
-        let vc = ListViewController(data: ["신지훈","김현수","김현서","강지구","심민주"])
+        //MARK: - 모의데이터 mockdata
+        var mockdata = [UserRelationship]()
+        for x in 0..<10 {
+            mockdata.append(UserRelationship(username: "sjh_04_26", name: "신지훈", type: x % 2 == 0 ? .following : .Unfollowing))
+        }
+        let vc = ListViewController(data: mockdata)
         vc.title = "팔로워"
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)
     }
     
     func profileHeaderDidTapfollowersButton(_ header: ProfileInfoHeaderCollectionReusableView) {
-        let vc = ListViewController(data: ["신지훈","김현수","김현서","강지구","심민주"])
+        //MARK: - 모의데이터 mockdata
+        var mockdata = [UserRelationship]()
+        for x in 0..<10 {
+            mockdata.append(UserRelationship(username: "sjh_04_26", name: "신지훈", type: x % 2 == 0 ? .following : .Unfollowing))
+        }
+        let vc = ListViewController(data: mockdata)
         vc.title = "팔로잉"
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)

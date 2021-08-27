@@ -23,7 +23,7 @@ final class ProfileInfoHeaderCollectionReusableView: UICollectionReusableView {
     //이미지
     private let profilePhotoImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = . red
+        imageView.image = UIImage(named: "testImage")
         imageView.layer.masksToBounds = true
         return imageView
     }()

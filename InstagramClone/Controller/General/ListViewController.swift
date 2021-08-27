@@ -15,9 +15,11 @@ class ListViewController: UIViewController {
         return table
     }()
     
-    private let data: [String]
+    private var data = [UserRelationship]()
     
-    init(data: [String]) {
+    //MARK: init
+    
+    init(data: [UserRelationship]) {
         self.data = data
         super.init(nibName: nil, bundle: nil)
     }
@@ -52,7 +54,7 @@ extension ListViewController: UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UserFollowTableViewCell.identifier, for: indexPath) as! UserFollowTableViewCell
-        cell.configure(with:"")
+        cell.configure(with: data[indexPath.row])
         return cell
     }
     
@@ -61,6 +63,9 @@ extension ListViewController: UITableViewDataSource,UITableViewDelegate {
         let model = data[indexPath.row]
         
     }
-    
+    //셀의 높이를 지정합니다.
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 75
+    }
     
 }
