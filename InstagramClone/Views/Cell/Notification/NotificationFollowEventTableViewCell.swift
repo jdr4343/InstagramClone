@@ -9,15 +9,44 @@ import UIKit
 
 class NotificationFollowEventTableViewCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    static let identifier = "NotificationFollowEventTableViewCell"
+    
+    private let profileImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.layer.masksToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
+    
+    private let label: UILabel = {
+        let label = UILabel()
+        label.textColor = .label
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    private let followButton: UIButton = {
+        let button = UIButton()
+        return button
+    }()
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        contentView.clipsToBounds = true
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    override func layoutSubviews() {
+        super.layoutSubviews()
     }
-
+    
+    public override func prepareForReuse() {
+        super.prepareForReuse()
+    }
+    
+    public func configure(with model: String) {
+        
+    }
 }

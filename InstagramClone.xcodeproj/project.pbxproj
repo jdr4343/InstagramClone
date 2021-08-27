@@ -44,6 +44,7 @@
 		4095016426D8CDA900416CA6 /* UserFollowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4095016326D8CDA900416CA6 /* UserFollowTableViewCell.swift */; };
 		4095016626D8F88600416CA6 /* NoNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4095016526D8F88600416CA6 /* NoNotificationView.swift */; };
 		4095016926D901A400416CA6 /* NotificationFollowEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4095016826D901A400416CA6 /* NotificationFollowEventTableViewCell.swift */; };
+		4095016B26D901DE00416CA6 /* NotificationLikeEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4095016A26D901DE00416CA6 /* NotificationLikeEventTableViewCell.swift */; };
 		40987E5A26D78DDB005D8BBC /* FormTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40987E5926D78DDB005D8BBC /* FormTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +88,7 @@
 		4095016326D8CDA900416CA6 /* UserFollowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFollowTableViewCell.swift; sourceTree = "<group>"; };
 		4095016526D8F88600416CA6 /* NoNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoNotificationView.swift; sourceTree = "<group>"; };
 		4095016826D901A400416CA6 /* NotificationFollowEventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationFollowEventTableViewCell.swift; sourceTree = "<group>"; };
+		4095016A26D901DE00416CA6 /* NotificationLikeEventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationLikeEventTableViewCell.swift; sourceTree = "<group>"; };
 		40987E5926D78DDB005D8BBC /* FormTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTableViewCell.swift; sourceTree = "<group>"; };
 		611D66800F03E20B6D0872A8 /* Pods-InstagramClone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramClone.release.xcconfig"; path = "Target Support Files/Pods-InstagramClone/Pods-InstagramClone.release.xcconfig"; sourceTree = "<group>"; };
 		6895FF0C0C209606E9477F29 /* Pods-InstagramClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramClone.debug.xcconfig"; path = "Target Support Files/Pods-InstagramClone/Pods-InstagramClone.debug.xcconfig"; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				4095016826D901A400416CA6 /* NotificationFollowEventTableViewCell.swift */,
+				4095016A26D901DE00416CA6 /* NotificationLikeEventTableViewCell.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -428,6 +431,7 @@
 				407A1FC426D3F47E0058F84D /* LoginViewController.swift in Sources */,
 				407A1FD026D3F5510058F84D /* SearchViewController.swift in Sources */,
 				407A200F26D6BCC80058F84D /* IGFeedPostGeneralTableViewCell.swift in Sources */,
+				4095016B26D901DE00416CA6 /* NotificationLikeEventTableViewCell.swift in Sources */,
 				407A1FE326D4A7400058F84D /* Extention.swift in Sources */,
 				4095015E26D7BA9F00416CA6 /* ProfileInfoHeaderCollectionReusableView.swift in Sources */,
 				407A1FCE26D3F5360058F84D /* ListViewController.swift in Sources */,
