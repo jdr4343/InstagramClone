@@ -76,6 +76,16 @@ final class NotificationsViewController: UIViewController {
     
     private func fetchNotification() {
         for x in 0...100 {
+            let user = User(username: "sjh_04_26",
+                                bio: "",
+                                name: "신지훈",
+                                Profilephoto: URL(string: "https://www.google.com/")!,
+                                birthDate: Date(),
+                                gender: .male,
+                                counts: UserCounts(followers: 9999, following: 120, post: 99),
+                                joinDate: Date())
+            
+            
             let post = UserPost(identifier: "",
                                 postType: .photo,
                                 thumbnailImage: URL(string: "https://www.google.com/")!,
@@ -84,17 +94,11 @@ final class NotificationsViewController: UIViewController {
                                 likeCount: [],
                                 comments: [],
                                 createDate: Date(),
-                                taggudUsers: [])
+                                taggudUsers: [],
+                                owner: user)
             let model = UserNotification(type: x % 2 == 0 ? .like(post: post) : .follow(state: .Unfollowing),
                                          text: "..난 할수 있다!!",
-                                         user: User(username: "sjh_04_26",
-                                                    bio: "",
-                                                    name: "신지훈",
-                                                    Profilephoto: URL(string: "https://www.google.com/")!,
-                                                    birthDate: Date(),
-                                                    gender: .male,
-                                                    counts: UserCounts(followers: 9999, following: 120, post: 99),
-                                                    joinDate: Date()))
+                                         user: user)
             models.append(model)
         }
     }
@@ -141,7 +145,16 @@ extension NotificationsViewController: UITableViewDelegate,UITableViewDataSource
 extension NotificationsViewController: NotificationLikeEventTableViewCellDelegate {
     func didTapRelatedPostButton(model: UserNotification) {
         //게시물을 오픈 합니다.
-        print("포스트 버튼이 클릭 되었습니다")
+        switch model.type {
+        //좋아요의 경우 게시물을 가져오고 팔로우 알림이 있는 경우 게시물에 대한 좋아요 버튼은 좋아요에만 표시되어야 하므로 fatalError() 를 반환 합니다.
+        case .like(post: let post):
+            let vc = PostViewController(model: post)
+            vc.title = post.postType.rawValue
+            vc.navigationItem.largeTitleDisplayMode = .never
+            navigationController?.pushViewController(vc, animated: true)
+        case .follow(state: _):
+            fatalError("개발오류: 콜을 받으면 안됩니다.")
+        }
         
         
     }

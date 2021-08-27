@@ -10,8 +10,9 @@ import Foundation
 //MARK: - model
 
 //사용자가 포스트한 게시물의 타입에 대한 모델입니다.
-public enum UserPostType {
-    case photo, video
+public enum UserPostType: String{
+    case photo = "Photo"
+    case video = "Video"
 }
 
 //사용자 게시물을 나타내는 모델입니다.
@@ -25,6 +26,7 @@ public struct UserPost {
     let comments: [PostComment]
     let createDate: Date
     let taggudUsers: [String]
+    let owner: User
 }
 
 //좋아요를 누른 사람에대한 정보입니다.
