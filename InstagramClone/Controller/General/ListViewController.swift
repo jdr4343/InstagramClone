@@ -55,6 +55,7 @@ extension ListViewController: UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UserFollowTableViewCell.identifier, for: indexPath) as! UserFollowTableViewCell
         cell.configure(with: data[indexPath.row])
+        cell.delegate = self
         return cell
     }
     
@@ -67,5 +68,20 @@ extension ListViewController: UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
     }
+    
+}
+
+//MARK: - UserFollowTableViewCellDelegate 팔로워 팔로잉 리스트 액션
+//파이어 베이스의 팔로우 정보를 업데이트 합니다.
+extension ListViewController: UserFollowTableViewCellDelegate {
+    func didTabFollowUnFollowButton(model: UserRelationship) {
+        switch model.type {
+        case .following:
+            break
+        case .Unfollowing:
+            break
+        }
+    }
+    
     
 }
