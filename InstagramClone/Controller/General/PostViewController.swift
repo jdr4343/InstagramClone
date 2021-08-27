@@ -79,17 +79,43 @@ extension PostViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch renderModels[section].renderType {
         case .actions(provider: _): return 1
-        case .comments(comments: let comments): comments.count > 4 ? 4 : comments.count
+            //코멘트의 수를 제한 합니다 4개의 행만 보여줄것입니다. 4개 이하라면 모두 보여줍니다.
+        case .comments(comments: let comments): return comments.count > 4 ? 4 : comments.count
         case .header(provider: _): return 1
         case .primaryContent(Provider: _): return 1
         }
-        
+        return 0
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let model = renderModels[indexPath.section]
+        switch model.renderType {
+        case .actions(provider: let actions):
+            let cell = tableView.dequeueReusableCell(withIdentifier: IGFeedPostActionTableViewCell.identifier, for: indexPath) as! IGFeedPostActionTableViewCell
+            return cell
+        case .comments(comments: let comments):
+            let cell = tableView.dequeueReusableCell(withIdentifier: IGFeedPostGeneralTableViewCell.identifier, for: indexPath) as! IGFeedPostGeneralTableViewCell
+            return cell
+        case .header(provider: let post):
+            let cell = tableView.dequeueReusableCell(withIdentifier: IGFeedPostHeaderTableViewCell.identifier, for: indexPath) as! IGFeedPostHeaderTableViewCell
+            return cell
+        case .primaryContent(Provider: let user):
+            let cell = tableView.dequeueReusableCell(withIdentifier: IGFeedPostTableViewCell.identifier, for: indexPath) as! IGFeedPostTableViewCell
+            return cell
+        }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let model = renderModels[indexPath.section]
+        switch model.renderType {
+        case .actions(_): return 60
+        case .comments(_): return 50
+        case .header(_): return 70
+        case .primaryContent(_): return tableView.width
+        }
     }
     
 }
