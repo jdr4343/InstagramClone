@@ -11,12 +11,17 @@ class NotificationsViewController: UIViewController {
 
     private let tableView: UITableView = {
         let table = UITableView()
-        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        table.register(NotificationLikeEventTableViewCell.self,
+                       forCellReuseIdentifier: NotificationLikeEventTableViewCell.identifier)
+        table.register(NotificationFollowEventTableViewCell.self,
+                       forCellReuseIdentifier: NotificationFollowEventTableViewCell.identifier)
         table.isHidden = false
         return table
     }()
     //NoNotificationView를 lazy로 선언합니다. 필요하지 않은 경우 인스턴스화 하지 않기 위해서 입니다.
     private lazy var noNotificationView = NoNotificationView()
+    
+    //MARK: Lifecycle
     
     //알림을 불러오고 있는 로딩시간에 보여줄 스피너를 추가 하겠습니다.
     private let spinner: UIActivityIndicatorView = {
