@@ -122,6 +122,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         }
         if indexPath.section == 1 {
             let tabControlHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ProfileTabsCollectionReusableView.identifier, for: indexPath) as! ProfileTabsCollectionReusableView
+            tabControlHeader.delegate = self
             return tabControlHeader
         }
         
@@ -138,11 +139,11 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         }
         //섹션 탭의 크기 / 인스타그램에는 두개의 헤더가 존재합니다... 사람 찾아보기라고..ㅎㅎ
         return CGSize(width: collectionView.width,
-                      height: 65)
+                      height: 50)
     }
     
 }
-//MARK:
+//MARK: ACTION
 
 //MARK: ProfileInfoHeaderCollectionReusableViewDelegate
 
@@ -154,14 +155,14 @@ extension ProfileViewController: ProfileInfoHeaderCollectionReusableViewDelegate
     
     func profileHeaderDidTapfollowingButton(_ header: ProfileInfoHeaderCollectionReusableView) {
         //목록 컨트롤러를 열어 사용자 팔로워를 보여줘야 하므로 뷰를 연결하겠습니다.
-        let vc = ListViewController()
+        let vc = ListViewController(data: ["신지훈","김현수","김현서","강지구","심민주"])
         vc.title = "팔로워"
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)
     }
     
     func profileHeaderDidTapfollowersButton(_ header: ProfileInfoHeaderCollectionReusableView) {
-        let vc = ListViewController()
+        let vc = ListViewController(data: ["신지훈","김현수","김현서","강지구","심민주"])
         vc.title = "팔로잉"
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)
@@ -172,6 +173,19 @@ extension ProfileViewController: ProfileInfoHeaderCollectionReusableViewDelegate
         let vc = EditProfileViewController()
         vc.title = "프로필 변경"
         present(UINavigationController(rootViewController: vc),animated: true)
+    }
+    
+    
+}
+
+//MARK: ProfileTabsCollectionReusableViewDelegate
+extension ProfileViewController: ProfileTabsCollectionReusableViewDelegate {
+    func didTapGridButton() {
+        //데이터가 있는 콜렉션뷰를 다시 로드합니다.
+    }
+    
+    func didTapTaggedButton() {
+        
     }
     
     
