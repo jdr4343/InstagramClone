@@ -7,12 +7,26 @@
 import FirebaseAuth
 import UIKit
 
+//4개의 렌더뷰 모델을 래핑하기 위해 구조체를 선언합니다.
+struct HomeFeedRenderViewModel {
+    let header: PostRenderViewModel
+    let post: PostRenderViewModel
+    let action: PostRenderViewModel
+    let comments: PostRenderViewModel
+}
+
+
 //인스타 그램처럼 피드 항목을 만들것 입니다. 만들기에 앞서 파이어베이스에서 storage를 활성화 시켜주세요!
 class HomeViewController: UIViewController {
 
+    private var feedrenderModels = [HomeFeedRenderViewModel]()
+    
     private let tableView: UITableView = {
         let table = UITableView()
         table.register(IGFeedPostTableViewCell.self, forCellReuseIdentifier: IGFeedPostTableViewCell.identifier)
+        table.register(IGFeedPostActionTableViewCell.self, forCellReuseIdentifier: IGFeedPostActionTableViewCell.identifier)
+        table.register(IGFeedPostGeneralTableViewCell.self, forCellReuseIdentifier: IGFeedPostGeneralTableViewCell.identifier)
+        table.register(IGFeedPostHeaderTableViewCell.self, forCellReuseIdentifier: IGFeedPostHeaderTableViewCell.identifier)
         return table
     }()
     

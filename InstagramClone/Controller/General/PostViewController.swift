@@ -35,6 +35,7 @@ class PostViewController: UIViewController {
  
     private let model: UserPost?
     
+    
     private var renderModels = [PostRenderViewModel]()
     
     private let tableView: UITableView = {
@@ -51,15 +52,13 @@ class PostViewController: UIViewController {
     init(model: UserPost?) {
         self.model = model
         super.init(nibName: nil, bundle: nil)
+        configureModel()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
  
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -69,6 +68,30 @@ class PostViewController: UIViewController {
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        tableView.frame = view.bounds
+    }
+    
+    //모델 설정
+    private func configureModel() {
+        guard let userPostModel = self.model else {
+            return
+        }
+        //Header
+        renderModels.append(PostRenderViewModel(renderType: .header(provider: userPostModel.owner)))
+        //Post
+        renderModels.append(PostRenderViewModel(renderType: .primaryContent(Provider: userPostModel)))
+        //Action
+        renderModels.append(PostRenderViewModel(renderType: .actions(provider: "")))
+        //4 Comments
+        var comments = [PostComment]()
+        for x in 0..<4 {
+            comments.append(PostComment(identifier: "123_\(x)",
+                                        username: "@신지훈",
+                                        text: "오늘 날씨가 참 좋네.. ",
+                                        createDate: Date(),
+                                        likes: []))
+        }
+        renderModels.append(PostRenderViewModel(renderType: .comments(comments: comments)))
     }
 
 }
