@@ -108,6 +108,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let x = section
         let model: HomeFeedRenderViewModel
+        //0이 특별한 이유는 0으로 나눌수 없기 때문에 0으로 설정하면 첫번째 것만 가져옵니다.
         if x == 0 {
             model = feedRenderModels[0]
         } else {
@@ -132,6 +133,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             let commentsModel = model.comments
             switch commentsModel.renderType {
             case .comments(let comments):
+                //두개 이상의 댓글이 있는 경우 최대 2개의 가장 최근의 댓글을 보여줍니다.
                 return comments.count > 2 ? 2 : comments.count
             case .header, .actions, .primaryContent: return 0
             
@@ -152,8 +154,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         //헤더,게시물,액션의 경우 언제나 한개의 행을 반환 받지만 댓글의 경우는 하나 이상이 있을수 있으므로 다릅니다.
         if subSection == 0 {
             //header
-            let headerModel = model.header
-            switch headerModel.renderType {
+            switch model.header.renderType {
             case .header(let user):
                 let cell = tableView.dequeueReusableCell(withIdentifier: IGFeedPostHeaderTableViewCell.identifier, for: indexPath) as! IGFeedPostHeaderTableViewCell
                 return cell
@@ -161,8 +162,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             }
         } else if subSection == 1 {
             //post
-            let postModel = model.post
-            switch postModel.renderType {
+            switch model.post.renderType {
             case .primaryContent(let post):
                 let cell = tableView.dequeueReusableCell(withIdentifier: IGFeedPostTableViewCell.identifier, for: indexPath) as! IGFeedPostTableViewCell
                 return cell
@@ -170,8 +170,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             }
         } else if subSection == 2 {
             //action
-            let actionModel = model.action
-            switch actionModel.renderType {
+            switch model.action.renderType {
             case .actions(let provider):
                 let cell = tableView.dequeueReusableCell(withIdentifier: IGFeedPostActionTableViewCell.identifier, for: indexPath) as! IGFeedPostActionTableViewCell
                 return cell
@@ -179,8 +178,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             }
         } else if subSection == 3 {
             //comments
-            let commentsModel = model.comments
-            switch commentsModel.renderType {
+            switch model.comments.renderType {
             case .comments(let comments):
                 let cell = tableView.dequeueReusableCell(withIdentifier: IGFeedPostGeneralTableViewCell.identifier, for: indexPath) as! IGFeedPostGeneralTableViewCell
                 return cell
@@ -192,16 +190,31 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let subSection = indexPath.section % 4
         if subSection == 0 {
-        return 70
+            //header
+            return 70
         } else if subSection == 1 {
+            //post
             return tableView.width
         } else if subSection == 2 {
+            //action
             return 60
         } else if subSection == 3 {
+            //comments
             return 50
-        } else {
-            return 0
         }
+        return 0
     }
     
+    //MARK: footer
+    
+    //푸터 뷰를 반환 하겠습니다.
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
+    }
+    
+    //푸터의 높이를 설정합니다.
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        let subSection = section % 4
+        return subSection == 3 ? 70 : 0
+    }
 }
