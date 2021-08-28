@@ -80,7 +80,7 @@ final class NotificationsViewController: UIViewController {
                                 bio: "",
                                 name: "신지훈",
                                 Profilephoto: URL(string: "https://www.google.com/")!,
-                                birthDate: Date(),
+                                 birthDate: Date(),
                                 gender: .male,
                                 counts: UserCounts(followers: 9999, following: 120, post: 99),
                                 joinDate: Date())
