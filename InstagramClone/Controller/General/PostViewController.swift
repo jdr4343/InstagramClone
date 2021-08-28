@@ -107,7 +107,7 @@ extension PostViewController: UITableViewDelegate,UITableViewDataSource {
         case .header(provider: _): return 1
         case .primaryContent(Provider: _): return 1
         }
-        return 0
+        
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = renderModels[indexPath.section]
