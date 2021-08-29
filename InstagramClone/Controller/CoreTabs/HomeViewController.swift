@@ -41,7 +41,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        tableView.frame = view.bounds
+       tableView.frame = view.bounds
     }
     
     //viewDidAppear는 뷰가 화면에 표시된 이후에 수행합니다!
@@ -157,6 +157,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             switch model.header.renderType {
             case .header(let user):
                 let cell = tableView.dequeueReusableCell(withIdentifier: IGFeedPostHeaderTableViewCell.identifier, for: indexPath) as! IGFeedPostHeaderTableViewCell
+                //셀연결
+                cell.configure(with: user)
+                cell.delegate = self
                 return cell
             case .comments, .actions, .primaryContent: return UITableViewCell()
             }
@@ -189,6 +192,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return UITableViewCell()
     }
+    //색션당 높이를 지정합니다.
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let subSection = indexPath.section % 4
         if subSection == 0 {
@@ -219,4 +223,22 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let subSection = section % 4
         return subSection == 3 ? 70 : 0
     }
+}
+
+//MARK: - IGFeedPostHeaderTableViewCellDelegate
+
+extension HomeViewController: IGFeedPostHeaderTableViewCellDelegate {
+    func didTapMoreButton() {
+        let actionSheet = UIAlertController(title: "게시물 옵션", message: nil, preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "게시물 삭제", style: .destructive, handler: { [weak self] _ in
+            self?.reportPost()
+        }))
+        actionSheet.addAction(UIAlertAction(title: "닫기", style: .cancel, handler: nil))
+        present(actionSheet, animated: true)
+    }
+    
+    func reportPost() {
+        
+    }
+    
 }

@@ -35,11 +35,11 @@ final class EditProfileViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "저장",
                                                             style: .done,
                                                             target: self,
-                                                            action: #selector(didTabSave))
+                                                            action: #selector(didtapSave))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "닫기",
                                                             style: .plain,
                                                             target: self,
-                                                            action: #selector(didTabCancel))
+                                                            action: #selector(didtapCancel))
     }
     
     override func viewDidLayoutSubviews() {
@@ -69,11 +69,11 @@ final class EditProfileViewController: UIViewController {
     
     //MARK: - 액션
     //변경사항을 저장할 것 입니다.
-    @objc private func didTabSave() {
+    @objc private func didtapSave() {
         dismiss(animated: true, completion: nil)
     }
 
-    @objc private func didTabCancel() {
+    @objc private func didtapCancel() {
         dismiss(animated: true, completion: nil)
     }
     
@@ -96,7 +96,7 @@ final class EditProfileViewController: UIViewController {
         present(actionSheet, animated: true)
     }
 
-    @objc private func didTabProfilePhotoButton() {
+    @objc private func didtapProfilePhotoButton() {
         
     }
 }
@@ -122,7 +122,7 @@ extension EditProfileViewController: UITableViewDataSource, FormTableViewCellDel
         ProfilePhotoButton.tintColor = .label
         ProfilePhotoButton.layer.borderWidth = 1
         ProfilePhotoButton.layer.borderColor = UIColor.secondarySystemBackground.cgColor
-        ProfilePhotoButton.addTarget(self, action: #selector(didTabProfilePhotoButton), for: .touchUpInside)
+        ProfilePhotoButton.addTarget(self, action: #selector(didtapProfilePhotoButton), for: .touchUpInside)
         
         
         

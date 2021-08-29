@@ -48,7 +48,7 @@ final class IGFeedPostTableViewCell: UITableViewCell {
     }
     
     public func configure(with post: UserPost) {
-        imageView?.image = UIImage(named: "인스타그램아이콘")
+        postImageView.image = UIImage(named: "인스타그램아이콘")
         return
         switch post.postType {
         case .photo:

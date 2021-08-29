@@ -54,13 +54,13 @@ final class SettingsViewController: UIViewController {
         //셀과 섹션을 추가 합니다.
         data.append([
             SettingCellModel(title: "프로필 변경") { [weak self] in
-                self?.didTabEditProfile()
+                self?.didtapEditProfile()
             },
             SettingCellModel(title: "친구 초대") { [weak self] in
-                self?.didTabInviteFriends()
+                self?.didtapInviteFriends()
             },
             SettingCellModel(title: "원본 게시물 저장") { [weak self] in
-                self?.didTabSaveOriginalPosts()
+                self?.didtapSaveOriginalPosts()
             }
         ])
         data.append([ //위의 모델과 연결하고 아래의 기능구현에서 작성을 합니다.
@@ -76,13 +76,13 @@ final class SettingsViewController: UIViewController {
         ])
         data.append([
             SettingCellModel(title: "로그아웃") { [weak self] in
-                self?.didTabLogOut()
+                self?.didtapLogOut()
             }
         ])
     }
     
     //MARK: - 기능구현
-    private func didTabEditProfile() {
+    private func didtapEditProfile() {
         let vc = EditProfileViewController()
         vc.title = "프로필 변경"
         let navVC = UINavigationController(rootViewController: vc)
@@ -90,11 +90,11 @@ final class SettingsViewController: UIViewController {
         present(navVC, animated: true)
     }
     
-    private func didTabInviteFriends() {
+    private func didtapInviteFriends() {
         //공유 시트를 표시하여 친구를 표시합니다.
     }
     
-    private func didTabSaveOriginalPosts() {
+    private func didtapSaveOriginalPosts() {
         
     }
     
@@ -114,7 +114,7 @@ final class SettingsViewController: UIViewController {
     }
     
     //로그아웃 기능을 구현합니다. / 이때 경고창도 만들어 실제로 로그아웃 할건지 물어보겠습니다.
-    private func didTabLogOut() {
+    private func didtapLogOut() {
         let actionSheet = UIAlertController(title: "로그아웃",
                                             message: "로그아웃 하시겠습니까?",
                                             preferredStyle: .actionSheet)

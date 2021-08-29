@@ -268,9 +268,9 @@
 			isa = PBXGroup;
 			children = (
 				407A200826D6BA610058F84D /* IGFeedPostTableViewCell.swift */,
+				407A200A26D6BC8B0058F84D /* IGFeedPostHeaderTableViewCell.swift */,
 				407A200C26D6BC9F0058F84D /* IGFeedPostActionTableViewCell.swift */,
 				407A200E26D6BCC80058F84D /* IGFeedPostGeneralTableViewCell.swift */,
-				407A200A26D6BC8B0058F84D /* IGFeedPostHeaderTableViewCell.swift */,
 			);
 			path = "HomeFeed & Post";
 			sourceTree = "<group>";

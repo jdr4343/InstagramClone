@@ -147,24 +147,24 @@ final class ProfileInfoHeaderCollectionReusableView: UICollectionReusableView {
     }
     //버튼 액션을 추가하는 함수입니다.
     private func addButtonAction() {
-        postButton.addTarget(self, action: #selector(didTabPostButton), for: .touchUpInside)
-        followingButton.addTarget(self, action: #selector(didTabFollowingButton), for: .touchUpInside)
-        followersButton.addTarget(self, action: #selector(didTabFollowerButton), for: .touchUpInside)
-        editProfileButton.addTarget(self, action: #selector(didTabEditProfileButton), for: .touchUpInside)
+        postButton.addTarget(self, action: #selector(didtapPostButton), for: .touchUpInside)
+        followingButton.addTarget(self, action: #selector(didtapFollowingButton), for: .touchUpInside)
+        followersButton.addTarget(self, action: #selector(didtapFollowerButton), for: .touchUpInside)
+        editProfileButton.addTarget(self, action: #selector(didtapEditProfileButton), for: .touchUpInside)
     }
     
     //델리게이트를 활용해 버튼을 탭했다고 전할것 입니다.발생한 일을 뷰 컨트롤러에 전달하여 뷰 컨트롤러 핸들러가 이 뷰 클래스가 아닌곳에서 처리할수 있도록 하는 방법입니다.
-    @objc private func didTabPostButton() {
+    @objc private func didtapPostButton() {
         delegate?.profileHeaderDidTapPostsButton(self)
     }
-    @objc private func didTabFollowingButton() {
+    @objc private func didtapFollowingButton() {
         delegate?.profileHeaderDidTapfollowingButton(self)
         
     }
-    @objc private func didTabFollowerButton() {
+    @objc private func didtapFollowerButton() {
         delegate?.profileHeaderDidTapfollowersButton(self)
     }
-    @objc private func didTabEditProfileButton() {
+    @objc private func didtapEditProfileButton() {
         delegate?.profileHeaderDidTapeditProfileButton(self)
     }
 }

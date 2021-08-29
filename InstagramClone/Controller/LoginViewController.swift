@@ -113,10 +113,10 @@ class LoginViewController: UIViewController {
         passwordField.delegate = self
         
         //버튼 타겟 설정.
-        loginButton.addTarget(self, action: #selector(didTabLoginButton), for: .touchUpInside)
-        termsButton.addTarget(self, action: #selector(didTabTermsButton), for: .touchUpInside)
-        privacyButton.addTarget(self, action: #selector(didTabPrivacyButton), for: .touchUpInside)
-        createAccountButton.addTarget(self, action: #selector(didTabCreateAccountButton), for: .touchUpInside)
+        loginButton.addTarget(self, action: #selector(didtapLoginButton), for: .touchUpInside)
+        termsButton.addTarget(self, action: #selector(didtapTermsButton), for: .touchUpInside)
+        privacyButton.addTarget(self, action: #selector(didtapPrivacyButton), for: .touchUpInside)
+        createAccountButton.addTarget(self, action: #selector(didtapCreateAccountButton), for: .touchUpInside)
         
     }
     
@@ -196,7 +196,7 @@ class LoginViewController: UIViewController {
         //인스타그램 로고를 추가하겠습니다.
         let imageView = UIImageView(image: UIImage(named: "인스타그램텍스트"))
         headerView.addSubview(imageView)
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.frame = CGRect(
             x: headerView.width/4,
             y: view.safeAreaInsets.top,
@@ -207,7 +207,7 @@ class LoginViewController: UIViewController {
     
     //MARK: - 버튼 액션
     
-    @objc private func didTabLoginButton() {
+    @objc private func didtapLoginButton() {
         //탭 될때 키보드를 닫도록 설정
         passwordField.resignFirstResponder()
         usernameEmailField.resignFirstResponder()
@@ -252,7 +252,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    @objc private func didTabTermsButton() {
+    @objc private func didtapTermsButton() {
         //url은 옵셔널값이기 때문에 가드문으로 바인딩 해줍니다.
         guard let url = URL(string: "https://help.instagram.com/581066165581870") else {
             return
@@ -261,7 +261,7 @@ class LoginViewController: UIViewController {
         present(vc, animated: true)
     }
     
-    @objc private func didTabPrivacyButton() {
+    @objc private func didtapPrivacyButton() {
         guard let url = URL(string: "https://help.instagram.com/519522125107875") else {
             return
         }
@@ -270,7 +270,7 @@ class LoginViewController: UIViewController {
         
     }
     
-    @objc private func didTabCreateAccountButton() {
+    @objc private func didtapCreateAccountButton() {
         let vc = RegistrationViewController()
         vc.title = "계정 생성"
         present(UINavigationController(rootViewController: vc),animated: true)
@@ -287,7 +287,7 @@ extension LoginViewController: UITextFieldDelegate {
         if textField == usernameEmailField {
             passwordField.becomeFirstResponder()
         } else if textField == passwordField {
-            didTabLoginButton()
+            didtapLoginButton()
         }
         return true
     }

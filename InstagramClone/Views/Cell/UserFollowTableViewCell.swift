@@ -8,7 +8,7 @@
 import UIKit
 
 protocol UserFollowTableViewCellDelegate: AnyObject {
-    func didTabFollowUnFollowButton(model: UserRelationship)
+    func didtapFollowUnFollowButton(model: UserRelationship)
 }
 
 enum FollowState {
@@ -70,7 +70,7 @@ class UserFollowTableViewCell: UITableViewCell {
         contentView.addSubview(followButton)
         selectionStyle = .none
         
-        followButton.addTarget(self, action: #selector(didTabFollowButton), for: .touchUpInside)
+        followButton.addTarget(self, action: #selector(didtapFollowButton), for: .touchUpInside)
     }
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -114,11 +114,11 @@ class UserFollowTableViewCell: UITableViewCell {
                                     width: buttonWidth,
                                     height: 40)
     }
-    @objc private func didTabFollowButton() {
+    @objc private func didtapFollowButton() {
         guard let model = model else {
             return
         }
-        delegate?.didTabFollowUnFollowButton(model: model)
+        delegate?.didtapFollowUnFollowButton(model: model)
     }
     
     

@@ -74,7 +74,7 @@ extension ListViewController: UITableViewDataSource,UITableViewDelegate {
 //MARK: - UserFollowTableViewCellDelegate 팔로워 팔로잉 리스트 액션
 //파이어 베이스의 팔로우 정보를 업데이트 합니다.
 extension ListViewController: UserFollowTableViewCellDelegate {
-    func didTabFollowUnFollowButton(model: UserRelationship) {
+    func didtapFollowUnFollowButton(model: UserRelationship) {
         switch model.type {
         case .following:
             break

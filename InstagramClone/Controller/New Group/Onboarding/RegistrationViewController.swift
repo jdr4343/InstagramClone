@@ -87,7 +87,7 @@ class RegistrationViewController: UIViewController {
         view.addSubview(emailField)
         view.addSubview(passwordField)
         view.addSubview(registerButton)
-        registerButton.addTarget(self, action: #selector(didTabRegisterButton), for: .touchUpInside)
+        registerButton.addTarget(self, action: #selector(didtapRegisterButton), for: .touchUpInside)
     }
     
     
@@ -100,7 +100,7 @@ class RegistrationViewController: UIViewController {
     }
 
     //회원 가입 버튼 기능 구현 / 사용자가 모든 데이터를 이상없이 전달했을경우 AuthManager를 통해서 계정을 생성하겠습니다.
-    @objc func didTabRegisterButton() {
+    @objc func didtapRegisterButton() {
         usernameField.resignFirstResponder()
         emailField.resignFirstResponder()
         passwordField.resignFirstResponder()
@@ -129,7 +129,7 @@ extension RegistrationViewController: UITextFieldDelegate {
         } else if textField == emailField {
             passwordField.becomeFirstResponder()
         } else if textField == passwordField {
-            didTabRegisterButton()
+            didtapRegisterButton()
         }
         return true
     }

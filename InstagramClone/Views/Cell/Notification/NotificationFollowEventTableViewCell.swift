@@ -52,7 +52,7 @@ class NotificationFollowEventTableViewCell: UITableViewCell {
         contentView.addSubview(profileImageView)
         contentView.addSubview(label)
         contentView.addSubview(followButton)
-        followButton.addTarget(self, action: #selector(didTabFollowButton), for: .touchUpInside)
+        followButton.addTarget(self, action: #selector(didtapFollowButton), for: .touchUpInside)
         configureForFollow()
         selectionStyle = .none
         
@@ -90,7 +90,7 @@ class NotificationFollowEventTableViewCell: UITableViewCell {
                              height: contentView.height)
     }
     
-    @objc private func didTabFollowButton() {
+    @objc private func didtapFollowButton() {
         guard let model = model else {
             return
         }

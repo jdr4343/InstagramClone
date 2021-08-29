@@ -45,7 +45,7 @@ class ProfileTabsCollectionReusableView: UICollectionReusableView {
         addSubview(gridButton)
         addSubview(taggedButton)
         gridButton.addTarget(self, action: #selector(didTapGridButton), for: .touchUpInside)
-        taggedButton.addTarget(self, action: #selector(didTabTaggedButton), for: .touchUpInside)
+        taggedButton.addTarget(self, action: #selector(didtapTaggedButton), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -75,7 +75,7 @@ class ProfileTabsCollectionReusableView: UICollectionReusableView {
         taggedButton.tintColor = .lightGray
         delegate?.didTapGridButton()
     }
-    @objc private func didTabTaggedButton() {
+    @objc private func didtapTaggedButton() {
         gridButton.tintColor = .lightGray
         taggedButton.tintColor = .systemBlue
         delegate?.didTapTaggedButton()

@@ -37,9 +37,9 @@ class ProfileViewController: UIViewController {
             image: UIImage(systemName: "gear"),
             style: .done,
             target: self,
-            action: #selector(didTabSettingButton))
+            action: #selector(didtapSettingButton))
     }
-    @objc func didTabSettingButton() {
+    @objc func didtapSettingButton() {
         let vc = SettingsViewController()
         vc.title = "설정"
         navigationController?.pushViewController(vc, animated: true)

@@ -15,7 +15,7 @@ class CameraViewController: UIViewController {
         
     }
     
-    private func didTabtakePicture() {
+    private func didtaptakePicture() {
         
     }
 

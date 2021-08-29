@@ -24,6 +24,10 @@ class IGFeedPostActionTableViewCell: UITableViewCell {
         super.layoutSubviews()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+    }
+    
     public func configure() {
         
     }
